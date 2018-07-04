@@ -14,39 +14,34 @@ TLSv1.2 is supported since version 2.4.0-rc1
 
 Created by Ivan Grokhotkov, 2015.
 This example is in public domain.
+
+modified by gojimmypi to test for WiFiClientSecure memory leaks
 */
 
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 
+#define USE_myPrivateSettings true
+
+#if USE_myPrivateSettings == true 
+#include "/workspace-git/myPrivateSettings.h"
+#else
 const char* ssid = "........";
 const char* password = "........";
+#endif
 
 const char* host = "api.github.com";
 const int httpsPort = 443;
 
 // Use web browser to view and copy
 // SHA1 fingerprint of the certificate
-const char* fingerprint = "35 85 74 EF 67 35 A7 CE 40 69 50 F3 C0 F6 80 CF 80 3B 2E 19";
+const char* fingerprint = "5F F1 60 31 09 04 3E F2 90 D2 B0 8A 50 38 04 E8 37 9F BC 76"; // "35 85 74 EF 67 35 A7 CE 40 69 50 F3 C0 F6 80 CF 80 3B 2E 19";
 
-void setup() {
-	Serial.begin(115200);
-	Serial.println();
-	Serial.print("connecting to ");
-	Serial.println(ssid);
-	WiFi.mode(WIFI_STA);
-	WiFi.begin(ssid, password);
-	while (WiFi.status() != WL_CONNECTED) {
-		delay(500);
-		Serial.print(".");
-	}
-	Serial.println("");
-	Serial.println("WiFi connected");
-	Serial.println("IP address: ");
-	Serial.println(WiFi.localIP());
-
-	// Use WiFiClientSecure class to create TLS connection
-	WiFiClientSecure client;
+// Use WiFiClientSecure class to create TLS connection
+WiFiClientSecure client;
+int initialHeapSize = -1;
+int lastHeapSize = -1;
+void FetchFile() {
 	Serial.print("connecting to ");
 	Serial.println(host);
 	if (!client.connect(host, httpsPort)) {
@@ -90,7 +85,33 @@ void setup() {
 	Serial.println(line);
 	Serial.println("==========");
 	Serial.println("closing connection");
+	Serial.println("Initial Heap = "   + (String)initialHeapSize + 
+		           "; Last Heap = "    + (String)lastHeapSize + 
+		           "; Current Heap = " + (String)ESP.getFreeHeap());
+	lastHeapSize = ESP.getFreeHeap();
+	client.stopAll();
+}
+
+void setup() {
+	Serial.begin(115200);
+	Serial.println();
+	Serial.print("connecting to ");
+	Serial.println(ssid);
+	WiFi.mode(WIFI_STA);
+	WiFi.begin(ssid, password);
+	while (WiFi.status() != WL_CONNECTED) {
+		delay(500);
+		Serial.print(".");
+	}
+	Serial.println("");
+	Serial.println("WiFi connected");
+	Serial.println("IP address: ");
+	Serial.println(WiFi.localIP());
+	initialHeapSize = ESP.getFreeHeap();
 }
 
 void loop() {
+	FetchFile();
+	delay(5000);
+
 }

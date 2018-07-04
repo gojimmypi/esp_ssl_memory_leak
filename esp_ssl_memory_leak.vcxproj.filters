@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="esp_ssl_memory_leak.ino" />
+    <None Include="README.md" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.esp_ssl_memory_leak.vsarduino.h">

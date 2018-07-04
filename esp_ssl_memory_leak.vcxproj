@@ -72,7 +72,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\esp_ssl_memory_leak;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\libraries\ESP8266WiFi\src;$(ProjectDir)..\..\Program Files (x86)\Arduino\libraries;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\libraries;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\libraries;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\cores\esp8266;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\cores\esp8266\avr;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\cores\esp8266\libb64;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\cores\esp8266\spiffs;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\cores\esp8266\umm_malloc;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\variants\nodemcu;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\sdk\include;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\sdk\lwip2\include;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\sdk\libc\xtensa-lx106-elf\include;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\xtensa-lx106-elf\xtensa-lx106-elf\include\c++\4.8.2;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\xtensa-lx106-elf\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\xtensa-lx106-elf\xtensa-lx106-elf\include;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\xtensa-lx106-elf\lib\gcc\xtensa-lx106-elf\4.8.2\include;$(ProjectDir)..\..\Users\gojimmypi\Documents\Arduino\hardware\esp8266com\esp8266\tools\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.esp_ssl_memory_leak.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>__ESP8266_ESp8266__;__ESP8266_ESP8266__;__ets__;ICACHE_FLASH;F_CPU=80000000L;LWIP_OPEN_SRC;TCP_MSS=536;DEBUG_ESP_PORT=Serial;DEBUG_ESP_SSL;DEBUG_ESP_TLS_MEM;DEBUG_ESP_HTTP_CLIENT;DEBUG_ESP_HTTP_SERVER;ARDUINO=10805;ARDUINO_ESP8266_NODEMCU;ARDUINO_ARCH_ESP8266;ESP8266;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__ESP8266_ESp8266__;__ESP8266_ESP8266__;__ets__;ICACHE_FLASH;F_CPU=80000000L;LWIP_OPEN_SRC;TCP_MSS=536;DEBUG_ESP_PORT=Serial;ARDUINO=10805;ARDUINO_ESP8266_NODEMCU;ARDUINO_ARCH_ESP8266;ESP8266;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -98,9 +98,12 @@
     <ProjectCapability Include="VisualMicro" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
     <None Include="esp_ssl_memory_leak.ino">
       <FileType>CppCode</FileType>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.esp_ssl_memory_leak.vsarduino.h" />
@@ -111,4 +114,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties custom_esp8266com_nodemcuv2_DebugLevel="None____" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
